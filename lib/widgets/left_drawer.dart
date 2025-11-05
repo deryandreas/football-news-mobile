@@ -1,0 +1,112 @@
+import 'package:flutter/material.dart';
+import 'package:football_news/menu.dart';
+import 'package:football_news/newslist_form.dart';
+
+class LeftDrawer extends StatelessWidget {
+  const LeftDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero, // Supaya header tidak ada padding default
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Football News',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.all(10)),
+                Text("Seluruh berita sepak bola terkini di sini!",
+                    // TODO: Tambahkan gaya teks dengan center alignment, font ukuran 15, warna putih, dan weight biasa
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white,
+                    ),
+                )
+              ],
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.home_outlined),
+            title: const Text('Home'),
+            // Bagian redirection ke MyHomePage
+            onTap: () {
+              Navigator.pop(context); // Tutup drawer
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.post_add),
+            title: const Text('Add News'),
+            // Bagian redirection ke NewsFormPage
+            onTap: () {
+              Navigator.pop(context); // Tutup drawer
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NewsFormPage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.article),
+            title: const Text('View News'),
+            // Redirect ke halaman melihat news (gunakan MyHomePage yang menampilkan daftar news)
+            onTap: () {
+              Navigator.pop(context); // Tutup drawer
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/profile');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/settings');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () {
+              Navigator.pop(context); // Tutup drawer
+              // Tambahkan logika logout jika perlu
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
